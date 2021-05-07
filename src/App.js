@@ -1,9 +1,9 @@
 import React from "react";
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Switch,
   Route,
-  Link
+  NavLink
 } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
 import Inicio from "./components/Inicio";
@@ -11,34 +11,28 @@ import Login from "./components/Login";
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <div className="container mt-5">
         <div className="btn-group">
-          <Link to="/" className="btn btn-dark">
+          <NavLink exact to="/" className="btn btn-dark" activeClassName="active">
             Inicio
-          </Link>
-          <Link to="/login" className="btn btn-dark">
+          </NavLink>
+          <NavLink to="/login" className="btn btn-dark" activeClassName="active">
             Login
-          </Link>
-          <Link to="/dashboard" className="btn btn-dark">
+          </NavLink>
+          <NavLink to="/dashboard" className="btn btn-dark" activeClassName="active">
             Dashboard
-          </Link>
+          </NavLink>
         </div>
         <hr />
 
         <Switch>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
-          <Route path="/">
-            <Inicio />
-          </Route>
+          <Route path="/login" component={Login} />
+          <Route path="/dashboard" component={Dashboard} />
+          <Route exact path="/" component={Inicio} />
         </Switch>
       </div>
-    </Router>
+    </BrowserRouter>
   );
 }
 
